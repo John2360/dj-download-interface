@@ -7,14 +7,14 @@ import os
 import io
 
 class Download():
-    def find_song(self, song_name, song_artists, use_lyrics = True):
+    def find_song(self, song_name, song_artists, use_lyrics = True, index = 0):
         song_string = song_name + ' by ' + ' '.join(song_artists)
 
         if use_lyrics:
             song_string = song_string + ' lyrics'
 
         search_results = VideosSearch(song_string, limit = 1)
-        song_url = search_results.result()['result'][0]['id']
+        song_url = search_results.result()['result'][index]['id']
         return 'https://www.youtube.com/watch?v='+song_url
 
     def download_song(self, song_url, download_path, song_name):
@@ -37,6 +37,7 @@ class Download():
         os.remove(song_location + '.mp4')
 
     def download_track(self, song_name, song_artists, song_art, download_path):
+        print(song_name, song_artists)
         song_url = self.find_song(song_name, song_artists)
         self.download_song(song_url, download_path, song_name)
         song_location = download_path + '/' + song_name

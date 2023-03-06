@@ -113,7 +113,7 @@ function Dashboard(props) {
             </Box>
             <Box sx={{flexWrap: 'wrap', display: 'flex', gap: 5, alignContent: 'center', justifyContent: 'center'}}>
                 {
-                    playlists.filter((playlist) => {return playlist.name.toLowerCase().includes(search.toLowerCase())}).filter((playlist) => {return filterStatus ? playlist.status == "downloaded" : true}).map((playlist, index) => {
+                    playlists.filter((playlist) => {return playlist.name.toLowerCase().includes(search.toLowerCase())}).filter((playlist) => {return filterStatus ? playlist.status == "downloaded" || playlist.status == "loading" : true}).map((playlist, index) => {
                         return (
                             <PlaylistTile key={index} item={playlist} setPlaylistID={setPlaylistID} status={playlist.status} updatePlaylistsStatus={updatePlaylistsStatus} addAlert={addAlert} token={token}  />
                         )

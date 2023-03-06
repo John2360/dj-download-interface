@@ -36,8 +36,11 @@ def download():
     photo_url = track_details['album']['images'][0]['url']
     track_location = f'{playlist_location}/{track_name}.mp3'
 
-    downloader.download_track(track_name, artst_names, photo_url, playlist_location)
-    database.addTrack(playlist_id, {'track_id': track_id, 'track_location': track_location})
+    try:
+        downloader.download_track(track_name, artst_names, photo_url, playlist_location)
+        database.addTrack(playlist_id, {'track_id': track_id, 'track_location': track_location})
+    catch Exception as e:
+        print(e)
 
     response = {"success": True}
     return jsonify(response)
@@ -64,12 +67,12 @@ def delete(playlist):
 def refresh():
     playlist_id = request.json['playlist_id']
     tracks = request.json['tracks']
-    playlist_location = database.getPlaylistLocation(playlist_id)
 
     if not database.isPlaylistDownloaded(playlist_id):
         response = {"success": False}
         return jsonify(response)
 
+    playlist_location = database.getPlaylistLocation(playlist_id)
     refreshed_tracks = []
     for track in tracks:
         refreshed_tracks.append(track['track']['id'])
