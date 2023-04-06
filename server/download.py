@@ -32,7 +32,6 @@ class Download():
         audiofile.tag.save()
 
     def convert_to_mp3(self, song_location):
-        print(song_location)
         subprocess.call(['ffmpeg -y -i "' + song_location + '.mp4" "' + song_location + '.mp3"' ], shell=True)
         os.remove(song_location + '.mp4')
 

@@ -75,11 +75,17 @@ function App() {
 
     // // on spotify id change
     const fetchPlaylists = useCallback( async() => {
-        const data = await getUserPlaylists(token, spotifyID, playlists, setPlaylists);
-        
-        if (data.success) {
-            setIsLoading(false);
+
+        if (spotifyID !== null && token !== null) {
+            console.log(spotifyID)
+            console.log(token)
+            const data = await getUserPlaylists(token, spotifyID, playlists, setPlaylists);
+
+            if (data.success) {
+                setIsLoading(false);
+            }
         }
+
     }, [spotifyID])
 
     // on playlists result

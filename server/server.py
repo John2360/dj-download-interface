@@ -40,7 +40,9 @@ def download():
         downloader.download_track(track_name, artst_names, photo_url, playlist_location)
         database.addTrack(playlist_id, {'track_id': track_id, 'track_location': track_location})
     except Exception as e:
+        print('Error downloading track: ' +track_name)
         print(e)
+        response = {"success": False, "message": "Error downloading track: " +track_name+ ". Error: " +str(e)}
 
     response = {"success": True}
     return jsonify(response)

@@ -55,7 +55,7 @@ function PlaylistTile(props) {
         </IconButton> : null
       }
       <Box sx={{position: 'absolute', top: 0, left: 0, width: 300, height: 300, zIndex: 1, backgroundColor: "rgba(0,0,0,.5)"}}></Box>
-      <Box sx={{position: 'absolute', top: 0, left: 0, width: 300, height: 300, backgroundImage: `url(${item.images[0].url})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', filter: "blur(2px)" }}></Box>
+      <Box sx={{position: 'absolute', top: 0, left: 0, width: 300, height: 300, backgroundImage: `url(${item.images[0]?.url})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', filter: "blur(2px)" }}></Box>
     </Card>
   )
 }
