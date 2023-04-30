@@ -18,7 +18,7 @@ class Download():
         return 'https://www.youtube.com/watch?v='+song_url
 
     def download_song(self, song_url, download_path, song_name):
-        youtube = YouTube(song_url)
+        youtube = YouTube(song_url, use_oauth=True, allow_oauth_cache=True)
         audio = youtube.streams.get_audio_only()
         audio.download(download_path, song_name+'.mp4')
         return audio.default_filename
